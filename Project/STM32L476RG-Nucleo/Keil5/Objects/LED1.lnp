@@ -1,0 +1,21 @@
+--cpu Cortex-M4.fp --branchpatch=sdcomp-29491-629360
+".\objects\common.o"
+".\objects\led.o"
+".\objects\stm32l4xx_hal.o"
+".\objects\stm32l4xx_hal_gpio.o"
+".\objects\stm32l4xx_hal_rcc.o"
+".\objects\stm32l4xx_hal_rcc_ex.o"
+".\objects\stm32l4xx_hal_pwr.o"
+".\objects\stm32l4xx_hal_pwr_ex.o"
+".\objects\system_stm32l4xx.o"
+".\objects\stm32l4xx_hal_cortex.o"
+".\objects\main.o"
+".\objects\startup_stm32l476xx.o"
+".\objects\stm32l4xx_nucleo.o"
+".\objects\stm32l4xx_it.o"
+".\objects\stm32l476rg.o"
+".\objects\clock.o"
+--strict --scatter ".\Objects\LED1.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\LED1.map" -o .\Objects\LED1.axf
