@@ -77,9 +77,9 @@ int main(void)
   /* Infinite loop */
   while (1){
     
-        PLT_SetPort(LED);
+        PLT_ActivatePort(LED);
         Delay_ms(1000);
-        PLT_ResetPort(LED);
+        PLT_DeactivatePort(LED);
         Delay_ms(1000);
   }
 }

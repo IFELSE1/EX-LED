@@ -33,23 +33,23 @@
 /*--For LED--*/
 //#define  LED
 #define  LED_GPIO       GPIOA
-#define  LED_PORT       5
-#define  LED_ACTIVE     HIGH
+#define  LED_PORT       GPIO_PIN_5
+#define  LED_ACTIVE     LOW
 
 /* Exported macro ------------------------------------------------------------*/
 
-#define PLT_ActivatePort(portname)    do{((portname##_GPIO) -> BSRR |= (portname##_ACTIVE)<<(portname##_PORT));}while(0)
+#define PLT_ActivatePort(portname)    do{(portname##_GPIO) -> BSRR |= (portname##_ACTIVE)?(portname##_PORT):(portname##_PORT<<16);}while(0)
 
-#define PLT_DeactivatePort(portname)  do{((portname##_GPIO) -> BSRR |= ((portname##_ACTIVE)?TRUE:FALSE)<<(portname##_PORT + 16));}while(0)
+#define PLT_DeactivatePort(portname)  do{(portname##_GPIO) -> BSRR |= (portname##_ACTIVE)?(portname##_PORT<<16):(portname##_PORT);}while(0)
 
-#define PLT_CheckPortActivation(portname)	(((portname##_GPIO ->IDR) & (1<<portname##_PORT))==(portname##_ACTIVE))?FALSE:TRUE
+#define PLT_CheckPortActivation(portname)	(((portname##_GPIO ->IDR) & (portname##_PORT))==(portname##_ACTIVE))?FALSE:TRUE
 
 
-#define PLT_SetPort(portname)    do{((portname##_GPIO) -> BSRR |= 1<<(portname##_PORT));}while(0)
+#define PLT_SetPort(portname)    do{(portname##_GPIO) -> BSRR |= portname##_PORT;}while(0)
 
-#define PLT_ResetPort(portname)  do{((portname##_GPIO) -> BSRR |= 1<<(portname##_PORT + 16));}while(0)
+#define PLT_ResetPort(portname)  do{(portname##_GPIO) -> BSRR |= (portname##_PORT << 16);}while(0)
 
-#define PLT_CheckPortState(portname)	(((portname##_GPIO ->IDR) & (1<<portname##_PORT))==0)?FALSE:TRUE
+#define PLT_CheckPortState(portname)	(((portname##_GPIO ->IDR) & (portname##_PORT))==0)?FALSE:TRUE
 
 
 
